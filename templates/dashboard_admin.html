@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['message'] %}
+  {% set category, message = session['message'] %}
+  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  {% set _ = session.pop('message') %}
+{% endif %}
+
+<h2>Admin Panel</h2>
+<h4>Users</h4>
+<table class="table table-bordered">
+  <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>WhatsApp</th><th>Role</th><th>Action</th></tr></thead>
+  <tbody>
+    {% for u in users %}
+    <tr><td>{{ u[0] }}</td><td>{{ u[1] }}</td><td>{{ u[2] }}</td><td>{{ u[3] }}</td><td>{{ u[4] }}</td>
+    <td><a href="/delete-user/{{ u[0] }}" class="btn btn-danger btn-sm">Delete</a></td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4>Products</h4>
+<table class="table table-bordered">
+  <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Farmer</th><th>Action</th></tr></thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td>{{ p[0] }}</td><td>{{ p[1] }}</td><td>{{ p[2] }}</td><td>₹{{ p[3] }}</td><td>{{ p[4] }}</td>
+      <td><a href="/delete-product-admin/{{ p[0] }}" class="btn btn-danger btn-sm">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4>Orders</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>Qty</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in orders %}
+    <tr>
+      <td>{{ o[0] }}</td>
+      <td>{{ o[1] }}</td>
+      <td>{{ o[2] }}</td>
+      <td>{{ o[3] }}</td>
+      <td>{{ o[4] }}</td>
+      <td>{{ o[5] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Product Orders</h2>
+
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Product</th>
+      <th>Customer</th>
+      <th>Email</th>
+      <th>WhatsApp</th>
+      <th>Quantity</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order[3] }}</td>  {# Product Name #}
+      <td>{{ order[1] }}</td>  {# Customer Username #}
+      <td>{{ order[2] }}</td>  {# Customer Email #}
+      <td>
+        <a href="https://wa.me/{{ order[6]|replace('+', '') }}" target="_blank">
+          {{ order[6] }}
+        </a>
+      </td>
+      <td>{{ order[4] }} kg</td>  {# Quantity #}
+      <td>{{ order[5] }}</td>  {# Order Date #}
+      <td>
+  {{ order[7] }}  {# status #}
+  {% if order[7] == 'pending' %}
+    <form action="/order/deliver/{{ order[0] }}" method="POST" style="display:inline;">
+    <button type="submit" class="btn btn-sm   btn-success ml-2">Mark Delivered</button>
+    </form>
+  {% endif %}
+</td>
+
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="8" class="text-center text-muted">No orders found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a class="btn btn-secondary mt-3" href="/dashboard/farmer">← Back to Dashboard</a>
+{% endblock %}

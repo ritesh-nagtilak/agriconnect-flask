@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">🛒 Your Cart</h2>
+
+{% if cart %}
+<table class="table table-bordered table-striped">
+  <thead class="table-success">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Total</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹{{ item.subtotal }}</td>
+        <td>
+          <a href="/remove-from-cart/{{ item.id }}" class="btn btn-sm btn-danger">🗑️</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4 class="text-end">Grand Total: ₹{{ grand_total }}</h4>
+<div class="text-end mt-3">
+  <a href="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+</div>
+{% else %}
+<p>Your cart is empty. <a href="/dashboard/customer">Browse Products</a></p>
+{% endif %}
+
+{% endblock %}

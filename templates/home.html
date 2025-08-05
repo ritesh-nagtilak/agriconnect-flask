@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="text-center py-5 bg-success text-white shadow">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Welcome to AgriConnect 🌾</h1>
+    <p class="lead mb-4">Connecting Farmers and Customers. Fresh. Local. Transparent.</p>
+    <a href="/register" class="btn btn-light btn-lg px-4">Get Started</a>
+  </div>
+</section>
+
+<div class="container my-5">
+  <div class="row text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 h-100 shadow-sm">
+        <img src="{{ url_for('static', filename='images/farmer.jpg') }}" class="card-img-top rounded-top" alt="For Farmers">
+        <div class="card-body">
+          <h5 class="card-title text-success">For Farmers</h5>
+          <p class="card-text">Easily list and manage fresh produce. No middlemen, no commission cuts - 100% profit to you.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 h-100 shadow-sm">
+        <img src="{{ url_for('static', filename='images/market.jpg') }}" class="card-img-top rounded-top" alt="For Customers">
+        <div class="card-body">
+          <h5 class="card-title text-success">For Customers</h5>
+          <p class="card-text">Explore fresh, seasonal produce directly from nearby farmers - healthy, affordable, and fast delivery.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 h-100 shadow-sm">
+        <img src="{{ url_for('static', filename='images/fresh-veg.jpg') }}" class="card-img-top rounded-top" alt="What We Offer">
+        <div class="card-body">
+          <h5 class="card-title text-success">What We Offer</h5>
+          <p class="card-text">Local support, verified sellers, secure payments, and a clean user experience for all roles.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="py-5 bg-light border-top">
+  <div class="container text-center">
+    <h2 class="mb-4 text-success">Why AgriConnect?</h2>
+    <p class="lead mx-auto" style="max-width: 800px;">
+      Built with Flask (Python), MySQL, and Bootstrap - AgriConnect bridges the gap between local producers and customers with role-based dashboards and real-time product updates. Farmers gain digital reach, and customers get healthy, local food fast.
+    </p>
+    <a href="/about" class="btn btn-outline-success mt-3">Explore More</a>
+  </div>
+</section>
+
+{% endblock %}

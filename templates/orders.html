@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">📦 Your Orders</h2>
+
+{% if orders %}
+<table class="table table-striped">
+  <thead class="table-primary">
+    <tr>
+      <th>Product</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Total</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.product.name }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>₹{{ order.product.price }}</td>
+      <td>₹{{ order.quantity * order.product.price }}</td>
+      <td>{{ order.order_date.strftime("%d %b, %Y %H:%M") }}</td>
+      <td>
+        {% if order.status == 'pending' %}
+          <span class="badge bg-warning text-dark">Pending</span>
+        {% elif order.status == 'delivered' %}
+          <span class="badge bg-success">Delivered</span>
+        {% else %}
+          <span class="badge bg-secondary">{{ order.status }}</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No orders found.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">🛒 Browse Products</h2>
+
+<form method="GET" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <input name="q" class="form-control" placeholder="🔍 Search products...">
+  </div>
+
+  <div class="col-md-3">
+    <select name="category" class="form-select">
+      <option value="">📦 All Categories</option>
+      <option value="Vegetables">🥬 Vegetables</option>
+      <option value="Fruits">🍎 Fruits</option>
+      <option value="Grains">🌾 Grains</option>
+      <option value="Dairy">🥛 Dairy</option>
+      <option value="Herbs">🌿 Herbs</option>
+      <option value="Others">🧺 Others</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <select name="location" class="form-select">
+      <option value="">📍 All Locations</option>
+      <option value="Nashik">Nashik</option>
+      <option value="Pune">Pune</option>
+      <option value="Nagpur">Nagpur</option>
+      <option value="Aurangabad">Aurangabad</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Kolhapur">Kolhapur</option>
+      <option value="Ahmednagar">Ahmednagar</option>
+      <option value="Solapur">Solapur </option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <button class="btn btn-success w-100">Filter</button>
+  </div>
+</form>
+
+<div class="row g-4">
+  {% for p in products %}
+  <div class="col-md-6">
+    <div class="card h-100 flex-row shadow-sm">
+      <img src="/static/uploads/{{ p[8] }}" class="img-fluid rounded-start" style="width: 200px; object-fit: cover;" alt="Product Image">
+      
+      <div class="card-body d-flex flex-column justify-content-between">
+        <div>
+          <h5 class="card-title">{{ p[2] }}</h5>
+          <p class="card-text mb-1">📂 <strong>Category:</strong> {{ p[3] }}</p>
+          <p class="card-text mb-1">💰 <strong>Price:</strong> ₹{{ p[4] }} / kg</p>
+          <p class="card-text small text-muted">{{ p[7] }}</p>
+        </div>
+
+        <form action="/add-to-cart/{{ p[0] }}" method="POST" class="d-flex align-items-center mt-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm me-2" onclick="adjustQty(this, -1)">−</button>
+          <input type="number" name="quantity" class="form-control form-control-sm text-center" value="1" min="1" style="width: 60px;">
+          <button type="button" class="btn btn-outline-secondary btn-sm mx-2" onclick="adjustQty(this, 1)">+</button>
+          <button type="submit" class="btn btn-primary btn-sm ms-auto">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+function adjustQty(btn, delta) {
+  const input = btn.parentElement.querySelector('input[name="quantity"]');
+  let qty = parseInt(input.value);
+  qty = isNaN(qty) ? 1 : qty + delta;
+  if (qty < 1) qty = 1;
+  input.value = qty;
+}
+</script>
+
+{% endblock %}

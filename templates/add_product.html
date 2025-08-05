@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">🧺 Add New Product</h2>
+
+<form method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
+  <!-- Product Name -->
+  <div class="mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Organic Tomatoes" required>
+  </div>
+
+  <!-- Category -->
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select class="form-select" id="category" name="category" required>
+      <option value="">-- Select Category --</option>
+      <option value="Vegetables">Vegetables</option>
+      <option value="Fruits">Fruits</option>
+      <option value="Grains">Grains</option>
+      <option value="Dairy">Dairy</option>
+      <option value="Herbs">Herbs</option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
+
+  <!-- Price -->
+  <div class="mb-3">
+    <label for="price" class="form-label">Price (₹ per kg)</label>
+    <input type="number" class="form-control" id="price" name="price" step="0.01" placeholder="e.g. 45.50" required>
+  </div>
+
+  <!-- Stock -->
+  <div class="mb-3">
+    <label for="stock" class="form-label">Stock (in kg)</label>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="e.g. 100" required>
+  </div>
+
+  <!-- Description -->
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Short description..."></textarea>
+  </div>
+
+<!-- Location -->
+<div class="mb-3">
+  <label for="location" class="form-label">Location</label>
+  <select class="form-select" id="location" name="location" required>
+    <option value="">-- Select Location --</option>
+    <option value="Nashik">Nashik</option>
+    <option value="Pune">Pune</option>
+    <option value="Nagpur">Nagpur</option>
+    <option value="Aurangabad">Aurangabad</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Kolhapur">Kolhapur</option>
+    <option value="Ahmednagar">Ahmednagar</option>
+    <option value="Solapur">Solapur </option>
+    <option value="Others">Others</option>
+  </select>
+</div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Product Image</label>
+    <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Add Product</button>
+</form>
+{% endblock %}

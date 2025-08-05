@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 450px;">
+  <div class="card shadow-lg rounded-4 border-1">
+    <div class="card-body">
+      <h3 class="text-center mb-4">Register</h3>
+          <form method="POST" action="/register">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" required autofocus>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="whatsapp" class="form-label">WhatsApp Number</label>
+              <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="+91XXXXXXXXXX" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="role" class="form-label">Register As</label>
+              <select class="form-select" id="role" name="role" required>
+                <option value="customer">Customer</option>
+                <option value="farmer">Farmer</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+          <div class="text-center mt-3">
+        <small>
+          Already have an account?
+          <a href="/login">Login</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

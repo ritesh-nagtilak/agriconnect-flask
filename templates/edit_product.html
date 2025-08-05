@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Product</h2>
+<form method="POST" enctype="multipart/form-data">
+  <input class="form-control mb-2" name="name" value="{{ product[2] }}" required>
+
+  <select class="form-control mb-2" name="category" required>
+    {% for c in ['Vegetables', 'Fruits', 'Grains', 'Dairy', 'Herbs', 'Others'] %}
+      <option value="{{ c }}" {% if product[3] == c %}selected{% endif %}>{{ c }}</option>
+    {% endfor %}
+  </select>
+
+  <input class="form-control mb-2" name="price" type="number" step="0.01" value="{{ product[4] }}" required>
+  <input class="form-control mb-2" name="stock" type="number" value="{{ product[5] }}" required>
+  <textarea class="form-control mb-2" name="description">{{ product[6] }}</textarea>
+
+  <label class="form-label">Upload New Image (Optional)</label>
+  <input class="form-control mb-3" name="image" type="file" accept="image/*">
+
+  <button class="btn btn-primary">Update Product</button>
+</form>
+{% endblock %}

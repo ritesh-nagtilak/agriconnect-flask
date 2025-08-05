@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">💳 Checkout</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% if cart_items %}
+<form method="POST">
+  <div class="mb-3">
+    <label for="address" class="form-label">Delivery Address</label>
+    <textarea name="address" id="address" rows="3" class="form-control" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="note" class="form-label">Additional Notes (optional)</label>
+    <textarea name="note" id="note" rows="2" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">Place Order</button>
+</form>
+{% else %}
+<p>Your cart is empty. <a href="/dashboard/customer">Browse Products</a></p>
+{% endif %}
+
+{% endblock %}
