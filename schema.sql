@@ -1,4 +1,3 @@
--- USERS TABLE
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) NOT NULL,
@@ -24,8 +23,6 @@ CREATE TABLE products (
 );
 
 
-
--- FIXED: ORDERS TABLE with NO CASCADE on product_id
 CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   customer_id INT NOT NULL,
@@ -40,11 +37,10 @@ CREATE TABLE orders (
 
   FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (farmer_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (product_id) REFERENCES products(id)   -- ❌ removed ON DELETE CASCADE
+  FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
 
--- FEEDBACK TABLE
 CREATE TABLE feedback (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,

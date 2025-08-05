@@ -10,4 +10,4 @@ db.sqlite3
 *.db
 *.log
 .vscode/
-AgroPlace DB.session.sql
+
